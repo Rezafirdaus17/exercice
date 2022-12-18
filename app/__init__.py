@@ -31,7 +31,7 @@ mail = Mail(app)
 
 scheduler = BackgroundScheduler()
 scheduler.configure(timezone="Asia/Singapore")
-scheduler.add_job(running_sender_email, trigger="cron", minute="*/1")
+scheduler.add_job(running_sender_email, trigger="cron", hour="*/2")
 scheduler.start()
 
 from app import models, routes
