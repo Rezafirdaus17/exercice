@@ -1,0 +1,24 @@
+@startuml
+
+alt schedule generate Coupon
+Schedule -> Schedule: Run schedule every midnight 00:00 WIB
+Schedule -> Database: Get data find in table users\nwhere month and day of birthday matched with date now
+    Group not empty data
+    Database -> Database: Generate data and save to table event_promo_code
+    end
+    Group empty data
+    Database -> Database: Do Nothing
+    end
+end
+
+alt schedule check Coupon Expired
+Schedule -> Schedule: Run schedule every 2 hours
+Schedule -> Database: Get data find in table event_promo_code\nwhere coupon is_valid=True and end_date less then datetime now
+    Group not empty data
+    Database -> Database: Change field is_valid=True to be is_valid=False
+    end
+    Group empty data
+    Database -> Database: Do Nothing
+    end
+end
+@enduml

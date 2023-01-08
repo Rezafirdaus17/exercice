@@ -1,0 +1,35 @@
+@startuml
+
+alt account POST
+User -> AccountEndpoint: User open endpoint account and complete body with data that must input.\n data included among other things.\n{name, email, date_of_birthday and additional phone_number}
+User -> AccountEndpoint: User request POST with data
+AccountEndpoint -> AccountEndpoint: This endpoint validation data
+
+    Group Success POST
+    AccountEndpoint -> Database: Add new record
+    AccountEndpoint -> Interface: result new record
+    Interface -> User: Show result data new record with code 201
+    end
+    Group Failed POST
+    AccountEndpoint -> Interface: result why failed to post
+    Interface -> User: Show result why failed to post with code 400 or higher
+    end
+end
+
+alt account GET
+User -> AccountEndpoint: User open endpoint account and put id of users on url (account/<id>)
+User -> AccountEndpoint: User request GET
+AccountEndpoint -> AccountEndpoint: This endpoint validation data
+
+    Group Success GET
+    AccountEndpoint -> Database: GET record with id
+    AccountEndpoint -> Interface: result record
+    Interface -> User: Show result data with id and with code 200
+    end
+    Group Failed GET
+    AccountEndpoint -> Database: GET record with id
+    AccountEndpoint -> Interface: result record
+    Interface -> User: Show result why failed to post with code 404
+    end
+end
+@enduml
