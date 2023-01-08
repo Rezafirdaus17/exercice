@@ -6,7 +6,7 @@ from flask_mail import Mail
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
-from app.util import running_sender_email
+from app.jobs import running_sender_coupon, running_check_coupon
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '5791628bb0b15ce0c676dfde280ba245'
@@ -30,8 +30,9 @@ migrate = Migrate(app, db)
 mail = Mail(app)
 
 scheduler = BackgroundScheduler()
-scheduler.configure(timezone="Asia/Singapore")
-scheduler.add_job(running_sender_email, trigger="cron", hour="*/2")
+scheduler.configure(timezone="Asia/Jakarta")
+scheduler.add_job(running_sender_coupon, trigger="cron", hour="0")
+scheduler.add_job(running_check_coupon, trigger="cron", minute="*/1")
 scheduler.start()
 
 from app import models, routes

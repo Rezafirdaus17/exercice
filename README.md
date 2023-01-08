@@ -15,10 +15,15 @@
    ```
    flask db upgrade
    ```
-4. run server
+4. run pytest
+   ```
+   python -m pytest
+   ```
+5. run server
    ```
    flask run
    ```
-
-it should be run on port 5000
+```
+   it should be run on port 5000
+```
 
