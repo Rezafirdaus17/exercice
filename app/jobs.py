@@ -65,4 +65,4 @@ def running_check_coupon():
             coupon.is_valid = False
             db.session.commit()
 
-    print("Success Run Coupon Schedule")
+    print("Success Run Check Coupon")
