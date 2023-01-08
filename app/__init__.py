@@ -32,7 +32,7 @@ mail = Mail(app)
 scheduler = BackgroundScheduler()
 scheduler.configure(timezone="Asia/Jakarta")
 scheduler.add_job(running_sender_coupon, trigger="cron", hour="0")
-scheduler.add_job(running_check_coupon, trigger="cron", minute="*/1")
+scheduler.add_job(running_check_coupon, trigger="cron", hour="*/2")
 scheduler.start()
 
 from app import models, routes
