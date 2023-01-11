@@ -1,5 +1,5 @@
 from app import app
-from app.views import HomeAPIView, CreateAccountAPIView, GetAccountAPIView
+from app.views.views import HomeAPIView, CreateAccountAPIView, GetAccountAPIView
 
 
 app.add_url_rule('/', view_func=HomeAPIView.as_view('home'))

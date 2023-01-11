@@ -7,7 +7,7 @@ from flask.views import MethodView
 
 from app import db
 from app.helpers import validation_email, response_bad_request, response_created_request
-from app.models import UserModel, PromoCodeModel
+from app.models.models import UserModel, PromoCodeModel
 
 
 class HomeAPIView(MethodView):

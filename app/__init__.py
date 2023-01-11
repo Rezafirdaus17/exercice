@@ -35,4 +35,5 @@ scheduler.add_job(running_sender_coupon, trigger="cron", hour="0")
 scheduler.add_job(running_check_coupon, trigger="cron", hour="*/2")
 scheduler.start()
 
-from app import models, routes
+from app.models import models
+from app.routes import routes

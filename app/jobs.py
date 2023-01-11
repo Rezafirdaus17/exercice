@@ -8,7 +8,7 @@ from sqlalchemy import extract
 def running_sender_coupon():
     from flask_mail import Message
     from app import app, db, mail
-    from app.models import UserModel, PromoCodeModel
+    from app.models.models import UserModel, PromoCodeModel
 
     print("Run Sender Coupon Schedule")
 
@@ -53,7 +53,7 @@ def running_sender_coupon():
 
 def running_check_coupon():
     from app import app, db
-    from app.models import PromoCodeModel
+    from app.models.models import PromoCodeModel
 
     with app.app_context():
         get_all_data = PromoCodeModel.query.filter_by(is_valid=True).filter(
